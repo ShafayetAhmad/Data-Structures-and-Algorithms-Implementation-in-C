@@ -3,7 +3,7 @@
 int mul(int x)
 {
     if (x > 1)
-        return x * mul(x - 1);
+        return mul(x - 1) * x;
 }
 
 int main()
