@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+void funY(int y);
 void funX(int x)
 {
     if (x > 0)
