@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void fun(int x)
+int fun(int x)
 {
     if (x > 0)
     {

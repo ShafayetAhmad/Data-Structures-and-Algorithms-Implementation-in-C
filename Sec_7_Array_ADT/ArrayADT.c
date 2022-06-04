@@ -20,18 +20,54 @@ void display(struct Array arr)
 }
 
 // functin to add/append and element at the end of the array;
-void add(struct Array *arr, int num)
+void append(struct Array *arr)
 {
-    arr->A[arr->length] = num;
-    arr->length++;
+    int lastElement;
+    printf("Enter the number to be inserted at the end: ");
+    scanf("%d", &lastElement);
+    if (arr->length < arr->size)
+    {
+        arr->A[arr->length] = lastElement;
+        arr->length++;
+    }
+    else
+        printf("Sorry, can't add element. Array is already full");
 }
 
 // function to insert an element in a given index
-//  void insert(struct Array arr,)
+void insert(struct Array *arr)
+{
+    int index, elementToInsert;
+    printf("Enter the index and element to enter: ");
+    scanf("%d %d", &index, &elementToInsert);
+    if (arr->length < arr->size)
+    {
+        for (int i = arr->length; i > index; i--)
+        {
+            arr->A[i] = arr->A[i - 1];
+        }
+        arr->A[index] = elementToInsert;
+        arr->length++;
+    }
+    else
+        printf("Sorry, can not insert element as the array is already full");
+}
 
+// funciton to delete and element from given index
+void delete (struct Array *arr)
+{
+    int index;
+    printf("Enter the index of the element to be deleted: ");
+    scanf("%d", &index);
+    if (index < arr->length)
+    {
+    }
+}
+
+// Driver Code
 int main()
 {
-    int elements, lastElement;
+    int elements;
     struct Array arr;
     printf("Enter the size of the array: ");
     scanf("%d", &arr.size);
@@ -41,15 +77,19 @@ int main()
     // insert elements
     printf("Numbers of elements to be inserted: ");
     scanf("%d", &elements);
-    printf("Enter %d elements: ", elements);
-    for (int i = 0; i < elements; i++)
+    if (elements < arr.size)
     {
-        scanf("%d", &arr.A[i]);
-        arr.length++;
+        printf("Enter %d elements: ", elements);
+        for (int i = 0; i < elements; i++)
+        {
+            scanf("%d", &arr.A[i]);
+            arr.length++;
+        }
     }
-    printf("Enter the number to be inserted at the end: ");
-    scanf("%d", &lastElement);
-    add(&arr, lastElement);
+
+    // append(&arr);
+    // insert(&arr);
+    // delete(&arr);
     display(arr);
 
     return 0;
