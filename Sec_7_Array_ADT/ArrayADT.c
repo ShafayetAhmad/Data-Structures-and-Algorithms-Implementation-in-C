@@ -61,6 +61,74 @@ void delete (struct Array *arr)
     scanf("%d", &index);
     if (index < arr->length)
     {
+        for (int i = index; i < arr->length - 1; i++)
+        {
+            arr->A[i] = arr->A[i + 1];
+        }
+        arr->length--;
+    }
+}
+
+// function to search the index of given element
+int search(struct Array *arr)
+{
+    int element;
+    printf("Enter the element to search: ");
+    scanf("%d", &element);
+    for (int i = 0; i < arr->length; i++)
+    {
+        if (arr->A[i] == element)
+            return i;
+    }
+    return -1;
+}
+
+// function to get the element of the given index
+void get(struct Array *arr)
+{
+    int index;
+    printf("Enter the index to get the element: ");
+    scanf("%d", &index);
+    printf("The element at index %d is %d\n", index, arr->A[index]);
+}
+
+void set(struct Array *arr)
+{
+    int index, value;
+    printf("Enter the index and value to set: ");
+    scanf("%d %d", &index, &value);
+    if (index < arr->length)
+    {
+        arr->A[index] = value;
+    }
+    else
+        ("Array index out of bound");
+}
+
+void maxmin(struct Array *arr)
+{
+    int max = arr->A[0];
+    int min = arr->A[0];
+    for (int i = 1; i < arr->length; i++)
+    {
+        if (max < arr->A[i])
+            max = arr->A[i];
+        if (min > arr->A[i])
+            min = arr->A[i];
+    }
+    printf("%d is the maximum and %d is the minimum\n", max, min);
+}
+
+// function to reverse an Array (not working)
+void reverse(struct Array *arr)
+{
+    int temp, n = arr->length;
+
+    for (int i = 0; i > n; i++, n--)
+    {
+        temp = arr->A[i];
+        arr->A[i] = arr->A[n];
+        arr->A[n] = temp;
     }
 }
 
@@ -90,6 +158,14 @@ int main()
     // append(&arr);
     // insert(&arr);
     // delete(&arr);
+    // int index = search(&arr);
+    // printf("Found at index %d\n",index);
+    // display(arr);
+    // get(&arr);
+    // set(&arr);
+    // maxmin(&arr);
+    reverse(&arr);
+
     display(arr);
 
     return 0;
