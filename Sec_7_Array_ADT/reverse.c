@@ -7,7 +7,15 @@ void reverse(int arr[], int length)
 int main()
 {
     int length = 8;
-    int arr[] = {1, 4, 3, 5, 7, 6, 8, 2, 10};
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    printf("Before Reverse: ");
+
+    for (int i = 0; i <= length; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
 
     for (int i = 0; i <= length / 2; i++)
     {
@@ -17,7 +25,8 @@ int main()
         arr[length - i] = temp;
     }
 
-    for (int i = 0; i < length; i++)
+    printf("After Reverse: ");
+    for (int i = 0; i <= length; i++)
     {
         printf("%d ", arr[i]);
     }
