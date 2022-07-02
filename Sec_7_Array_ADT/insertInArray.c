@@ -19,18 +19,18 @@ int isSorted(struct Array arr1)
 }
 
 // Insert an element into the array
-void insertInArray(struct Array arr, int num)
-{
-    for (int i = 0; i < arr.size; i++)
-    {
-        if (num < arr.A[i + 1])
-        {
-            rightShift(arr);
-            arr.A[i] = num;
-            arr.length++;
-        }
-    }
-}
+// void insertInArray(struct Array arr, int num)
+// {
+//     for (int i = 0; i < arr.size; i++)
+//     {
+//         if (num < arr.A[i + 1])
+//         {
+//             rightShift(arr);
+//             arr.A[i] = num;
+//             arr.length++;
+//         }
+//     }
+// }
 
 // Display the element of the array
 void Display(struct Array arr)
@@ -43,16 +43,18 @@ void Display(struct Array arr)
 }
 
 // shift the element to the right for one space
-void rightShiftForInsert(struct Array arr, int num)
+void insertInArray(struct Array *arr1, int num)
 {
-    if (arr.length < arr.size)
+    if (arr1->length < arr1->size)
     {
-        int i = arr.length;
-        while (arr.A[i] < num)
+        int i = arr1->length - 1;
+        while (arr1->A[i] > num)
         {
-            arr.A[i + 1] = arr.A[i];
+            arr1->A[i + 1] = arr1->A[i];
+            i--;
         }
-        arr.A[i] = num;
+        arr1->A[i + 1] = num;
+        arr1->length++;
     }
     else
         printf("Array is already full. \n");
@@ -64,8 +66,10 @@ int main()
     int num = 7;
     if (isSorted(arr) == 1)
     {
-        insertInArray(arr, num);
+        insertInArray(&arr, num);
     }
+    else
+        printf("Array Not Sorted\n");
     Display(arr);
 
     return 0;
