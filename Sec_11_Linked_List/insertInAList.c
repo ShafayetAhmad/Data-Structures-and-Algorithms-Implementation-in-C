@@ -24,13 +24,35 @@ void createList(int A[], int n)
     }
 }
 
-void insertBeforeFirstNode(int element)
+void insertOnGivenIndex(int index, int element)
 {
-    struct Node *temp;
-    temp = (struct Node *)malloc(sizeof(struct Node));
-    temp->data = element;
-    temp->next = first;
-    first = temp;
+    if (index == 0)
+    {
+        struct Node *temp;
+        temp = (struct Node *)malloc(sizeof(struct Node));
+        temp->data = element;
+        temp->next = first;
+        first = temp;
+    }
+    else
+    {
+        int count = 0;
+        struct Node *new, *n;
+        n = first;
+        new = (struct Node *)malloc(sizeof(struct Node));
+        new->data = element;
+        while (n != NULL)
+        {
+            if (count == index - 1)
+            {
+                new->next = n->next;
+                n->next = new;
+                break;
+            }
+            n = n->next;
+            count++;
+        }
+    }
 }
 
 void display(struct Node *n)
@@ -48,7 +70,10 @@ int main()
     int A[] = {2, 4, 6, 8, 1, 3};
     createList(A, 6);
     display(first);
-    insertBeforeFirstNode(9);
+    // insertBeforeFirstNode(9);
+    insertOnGivenIndex(0, 15);
+    insertOnGivenIndex(3, 17);
+
     display(first);
     return 0;
 }
