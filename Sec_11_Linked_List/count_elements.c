@@ -24,20 +24,34 @@ void createList(int arr[], int n)
     }
 }
 
-void display(struct Node *n)
+int count(struct Node *n)
 {
+    int count = 0;
     while (n != NULL)
     {
-        printf("%d ", n->data);
+        count++;
         n = n->next;
     }
-    printf("\n");
+    return count;
+}
+
+int sum(struct Node *n)
+{
+    int sum = 0;
+    while (n != NULL)
+    {
+        sum += n->data;
+        n = n->next;
+    }
+    return sum;
 }
 
 int main()
 {
     int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     createList(arr, 9);
-    display(first);
+    printf("Elements: %d\n", count(first));
+    printf("Sum: %d\n", sum(first));
+
     return 0;
 }
