@@ -8,6 +8,12 @@ struct treeNode
     struct treeNode *rchild;
 };
 
+struct stack
+{
+    struct treeNode *treeNode;
+    struct stack *next;
+};
+
 struct queueNode
 {
     struct treeNode *node;
@@ -81,9 +87,18 @@ struct treeNode *createTree()
     return root;
 }
 
+int isStackEmpty(struct stack *st)
+{
+    if (st == NULL)
+        return 1;
+    else
+        return 0;
+}
+
 void preorder(struct treeNode *node)
 {
-    if (node != NULL)
+    struct stack *st;
+    while (node != NULL || !isStackEmpty(st))
     {
         printf("%d ", node->data);
         preorder(node->lchild);
@@ -117,16 +132,12 @@ int main()
 {
     struct treeNode *root;
     root = createTree();
-    printf("Preorder: ");
     preorder(root);
     printf("\n");
-    printf("Inorder: ");
-
     inorder(root);
     printf("\n");
-    printf("Postorder: ");
-
     postorder(root);
     printf("\n");
+
     return 0;
 }

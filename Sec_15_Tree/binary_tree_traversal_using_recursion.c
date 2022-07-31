@@ -117,16 +117,12 @@ int main()
 {
     struct treeNode *root;
     root = createTree();
-    printf("Preorder: ");
     preorder(root);
     printf("\n");
-    printf("Inorder: ");
-
     inorder(root);
     printf("\n");
-    printf("Postorder: ");
-
     postorder(root);
     printf("\n");
+
     return 0;
 }
