@@ -8,11 +8,43 @@ struct treeNode
     struct treeNode *rchild;
 };
 
+//...............For Stack...........................
 struct stack
 {
-    struct treeNode *treeNode;
+    struct treeNode *node;
     struct stack *next;
-};
+} *top = NULL;
+
+void push(struct treeNode *node, struct stack *top)
+{
+    struct stack *st = (struct stack *)malloc(sizeof(struct stack));
+
+    st->node = node;
+    st->next = top;
+    top = st;
+}
+
+int pop()
+{
+    if (top == NULL)
+        printf("Stack is Empty.");
+    else
+    {
+        struct stack *t = top;
+        top = top->next;
+        free(t);
+    }
+}
+
+int isEmpty(struct stack *st)
+{
+    if (st == NULL)
+        printf("Stack is Empty.\n");
+    else
+        printf("Stack is not empty.\n");
+}
+
+//.......................................................
 
 struct queueNode
 {
@@ -87,44 +119,13 @@ struct treeNode *createTree()
     return root;
 }
 
-int isStackEmpty(struct stack *st)
-{
-    if (st == NULL)
-        return 1;
-    else
-        return 0;
-}
-
 void preorder(struct treeNode *node)
 {
-    struct stack *st;
-    while (node != NULL || !isStackEmpty(st))
+    if (node != NULL)
     {
         printf("%d ", node->data);
         preorder(node->lchild);
         preorder(node->rchild);
-    }
-}
-
-void inorder(struct treeNode *node)
-{
-    if (node != NULL)
-    {
-
-        inorder(node->lchild);
-        printf("%d ", node->data);
-        inorder(node->rchild);
-    }
-}
-
-void postorder(struct treeNode *node)
-{
-    if (node != NULL)
-    {
-
-        postorder(node->lchild);
-        postorder(node->rchild);
-        printf("%d ", node->data);
     }
 }
 
@@ -133,10 +134,6 @@ int main()
     struct treeNode *root;
     root = createTree();
     preorder(root);
-    printf("\n");
-    inorder(root);
-    printf("\n");
-    postorder(root);
     printf("\n");
 
     return 0;
