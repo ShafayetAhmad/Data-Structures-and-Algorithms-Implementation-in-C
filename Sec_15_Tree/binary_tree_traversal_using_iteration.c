@@ -15,33 +15,40 @@ struct stack
     struct stack *next;
 } *top = NULL;
 
-void push(struct treeNode *node, struct stack *top)
+void push(struct treeNode *theNode)
 {
     struct stack *st = (struct stack *)malloc(sizeof(struct stack));
 
-    st->node = node;
+    st->node = theNode;
     st->next = top;
     top = st;
 }
 
-int pop()
+struct stack *pop()
 {
+    struct stack *t = NULL;
     if (top == NULL)
         printf("Stack is Empty.");
     else
     {
-        struct stack *t = top;
+        t = top;
         top = top->next;
-        free(t);
     }
+    return t;
 }
 
 int isEmpty(struct stack *st)
 {
     if (st == NULL)
+    {
         printf("Stack is Empty.\n");
+        return 1;
+    }
     else
+    {
         printf("Stack is not empty.\n");
+        return 0;
+    }
 }
 
 //.......................................................
@@ -119,13 +126,13 @@ struct treeNode *createTree()
     return root;
 }
 
-void preorder(struct treeNode *node)
+void preorder(struct treeNode *node, struct treeNode *rootNode)
 {
-    if (node != NULL)
+    push(rootNode);
+    while (node != NULL && !isEmpty(top))
     {
         printf("%d ", node->data);
-        preorder(node->lchild);
-        preorder(node->rchild);
+        node = node->lchild;
     }
 }
 

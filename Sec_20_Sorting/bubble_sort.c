@@ -63,7 +63,7 @@ void display_linked_list(struct Node *root)
 
 int main()
 {
-    // int arr[] = {8, 5, 7, 3, 2}; // unsorted array
+    int arr[] = {8, 5, 7, 3, 2}; // unsorted array
     // int arr[] = {1, 4, 6, 8, 7}; // already sorted array
     root = (struct Node *)malloc(sizeof(struct Node));
     root->data = 8;
@@ -73,9 +73,9 @@ int main()
     createNode(root, 5);
     createNode(root, 3);
 
-    // bubble_sor_for_array(arr, 5);
-    // display_array(arr, 5);
-    bubble_sort_for_linked_list(root);
-    display_linked_list(root);
+    bubble_sor_for_array(arr, 5);
+    display_array(arr, 5);
+    // bubble_sort_for_linked_list(root);
+    // display_linked_list(root);
     return 0;
 }

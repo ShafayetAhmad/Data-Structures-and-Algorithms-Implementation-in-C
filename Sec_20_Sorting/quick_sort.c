@@ -2,55 +2,47 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void display_array(int arr[], int n)
+int partition(int arr[], int l, int h)
 {
-    for (int i = 0; i < n; i++)
+    int pivot = arr[l];
+    int i = l, j = h;
+    do
     {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
+        do
+        {
+            i++;
+        } while (arr[i] <= pivot);
+        do
+        {
+            j--;
+        } while (arr[j] > pivot);
+
+    } while (i < j);
+
+    int temp = arr[l];
+    arr[l] = arr[j];
+    arr[j] = temp;
+    return j;
 }
 
-void quick_sort(int arr[], int n)
+void quickSort(int arr[], int l, int h)
 {
-    // int arr[] = {50, 30, 60, 90, 40, 80, 10, 20, 70};
-    for (int i = 0; i < n; i++)
+    int j;
+    if (l < h)
     {
-        int j, k;
-        for (j = i + 1, k = n - 1; j < k;)
-        {
-            if (arr[j] > arr[i] && arr[k] < arr[i])
-            {
-                int temp = arr[j];
-                arr[j] = arr[k];
-                arr[k] = temp;
-                j++, k--;
-            }
-            else if (arr[j] <= arr[i])
-                j++;
-            else
-                k--;
-        }
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+        j = partition(arr, l, h);
+        quickSort(arr, l, j);
+        quickSort(arr, j + 1, h);
     }
 }
 
 int main()
 {
-    int n = 9;
-    // int arr[n];
-    // for (int i = 0; i < n; i++)
-    // {
-    //     arr[i] = rand() % 100;
-    // }
-    int arr[] = {50, 30, 60, 90, 40, 80, 10, 20, 70}; // unsorted array
-    // int arr[] = {1, 4, 6, 8, 7}; // already sorted array
+    int arr[] = {11, 13, 7, 12, 16, 9, 24, 5, 10, 3, __INT32_MAX__};
+    quickSort(arr, 0, 10);
+    for (int i = 0; i < 10; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
 
-    quick_sort(arr, n);
-    display_array(arr, n);
-
-    // display_linked_list(root);
     return 0;
 }
