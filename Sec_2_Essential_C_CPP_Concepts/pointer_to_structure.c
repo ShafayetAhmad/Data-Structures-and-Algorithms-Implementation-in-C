@@ -10,11 +10,11 @@ int main()
     struct Rect r1 = {5, 10};
     struct Rect *p = &r1;
 
-    // To access using normal variable we use dot operator
+    // To access variable in normal structure we use dot operator
     printf("%d\n", r1.width);
     printf("%d\n", r1.breadth);
 
-    // To access using pointer variable we use arrow
+    // To access variable of structure in heap we use arrow operator
     printf("%d\n", p->width);
     printf("%d\n", p->breadth);
 }
