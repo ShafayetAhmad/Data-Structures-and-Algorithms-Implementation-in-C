@@ -1,4 +1,4 @@
-# Abdul Bari's Data Structures and Algorithms
+# Data Structures and Algorithms Implementation in C
 
 This GitHub repository contains the code implementations of various data structures and algorithms learned from Abdul Bari's course on Data Structures and Algorithms. The repository serves as a reference for understanding and implementing common data structures and algorithms in C.
 
